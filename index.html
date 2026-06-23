@@ -1,13 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Oofskale — ESRGAN Upscaler</title>
-</head>
-<body>
-  <h2>Real-ESRGAN Browser Upscaler: Oofskale</h2>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oofskale: FOSS Client Side Upscaler</title>
 
-  <input type="file" id="upload" />
-  <canvas id="canvas"></canvas>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      background: #1e1e1e;
+      color: white;
+      border: 1px solid #333;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 12px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #555;
+      cursor: not-allowed;
+    }
+
+    canvas {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      background: #111;
+    }
+
+    .status {
+      font-size: 14px;
+      color: #aaa;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 16px;
+      }
+
+      button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Oofskale: FOSS Client-side Upscaler</h2>
+
+  <div class="container">
+    <input type="file" id="upload" accept="image/*" />
+    <button id="upscaleBtn" disabled>Upscale</button>
+
+    <div class="status" id="status">Load model...</div>
+
+    <canvas id="canvas"></canvas>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
   <script src="app.js"></script>
